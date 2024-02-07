@@ -59,4 +59,49 @@ class ProductRepositoryTest {
         assertEquals(savedProduct.getProductId(), product2.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEdit() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1039-4600-8860-71af6af63bde");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        Product savedProduct = productIterator.next();
+        assertEquals(product.getProductId(), savedProduct.getProductId());
+        assertEquals(product.getProductName(), savedProduct.getProductName());
+        assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
+
+        Product editedProduct = new Product();
+        editedProduct.setProductName("Sampo Cap Bambang Baru");
+        editedProduct.setProductQuantity(10);
+        productRepository.editById(0, editedProduct);
+
+        productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        Product newProduct = productIterator.next();
+        assertEquals(newProduct.getProductId(), product.getProductId());
+        assertEquals(newProduct.getProductName(), editedProduct.getProductName());
+        assertEquals(newProduct.getProductQuantity(), editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testDelete() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1039-4600-8860-71af6af63bde");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+
+        productRepository.delete(0);
+
+        Iterator<Product> newProductIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
 }
