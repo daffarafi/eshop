@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,5 +44,36 @@ public class HomePageFunctionalTest {
         String welcomeMessage = driver.findElement(By.tagName("h3")).getText();
 
         assertEquals("Welcome", welcomeMessage);
+    }
+
+    @Test
+    void listProduct_titleMessage_isCorrect(ChromeDriver driver) throws Exception {
+        driver.get(baseUrl + "/product/list");
+        String titleMessage = driver.findElement(By.tagName("h2")).getText();
+        assertEquals("Product' List", titleMessage);
+
+    }
+
+    @Test
+    void createProduct_titleMessage_isCorrect(ChromeDriver driver) throws Exception {
+        driver.get(baseUrl + "/product/create");
+        String titleMessage = driver.findElement(By.tagName("h3")).getText();
+        assertEquals(titleMessage, "Create New Product");
+    }
+    @Test
+    void createNewProduct(ChromeDriver driver) throws Exception {
+        driver.get(baseUrl + "/product/create");
+        WebElement nameInput = driver.findElement(By.id("nameInput"));
+        WebElement quantityInput = driver.findElement(By.id("quantityInput"));
+        WebElement submitBtn = driver.findElement(By.tagName("button"));
+
+        nameInput.sendKeys("Product Baru");
+        quantityInput.sendKeys("10");
+        submitBtn.click();
+
+        driver.get(baseUrl + "/product/list");
+
+        String nameProduct = driver.findElement(By.tagName("td")).getText();
+        assertEquals("Product Baru", nameProduct);
     }
 }
