@@ -15,13 +15,16 @@
         <thead>
         <th scope="col">Product Name</th>
         <th scope="col">Quantity</th>
-
+        <th scope="col">Action</th>
         <tr></tr>
         </thead>
         <tbody>
-        <tr th:each="product: ${products}">
+        <tr th:each="product, iter: ${products}">
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
+            <td><a th:href="@{/product/edit/{id}(id=${iter.index})}"><button  type="button" class="btn btn-primary">Edit</button></a>
+                <a th:href="@{/product/delete/{id}(id=${iter.index})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
         </tr>
         </tbody>
     </table>

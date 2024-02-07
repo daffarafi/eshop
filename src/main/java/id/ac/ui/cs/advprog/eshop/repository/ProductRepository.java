@@ -19,4 +19,16 @@ public class ProductRepository {
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
+
+    public Product editById(int id, Product newProduct) {
+        Product product = productData.get(id);
+        product.setProductName(newProduct.getProductName());
+        product.setProductQuantity(newProduct.getProductQuantity());
+        return product;
+    }
+
+    public Product findUnique(int id) {
+        return productData.get(id);
+    }
+
 }
