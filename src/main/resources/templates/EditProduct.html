@@ -8,16 +8,16 @@
 <body>
 
 <div class="container">
-    <h3>Create New Product</h3>
-
-    <form th:action="@{/product/create}" th:object="${product}" method="post">
+    <h3>Edit Product </h3>
+    <span th:text="${id}"></span>
+    <form th:action="@{/product/edit/__${id}__}" th:object="${product}" method="post">
         <div class="form-group">
             <label for="nameInput">Name</label>
-            <input th:field="*{productName}" type="text"  class="form-control mb-4 col-4" id="nameInput" placeholder="Enter product' name">
+            <input th:field="*{productName}" type="text" th:value="${id}" class="form-control mb-4 col-4" id="nameInput" placeholder="Enter product' name">
         </div>
         <div class="form-group">
             <label for="quantityInput">Quantity</label>
-            <input th:field="*{productQuantity}" type="text" class="form-control mb-4 col-4" id="quantityInput" placeholder="Enter product' name">
+            <input th:field="*{productQuantity}" type="text" th:value="${quantity}"  class="form-control mb-4 col-4" id="quantityInput" placeholder="Enter product' name">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
