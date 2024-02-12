@@ -104,4 +104,28 @@ class ProductRepositoryTest {
         Iterator<Product> newProductIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testFindUnique() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1039-4600-8860-71af6af63bde");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product product2 = new Product();
+        product2.setProductId("ebwer233-weqw-312w-1829-13ih2h3u1hu");
+        product2.setProductName("Sampo Cap Usep");
+        product2.setProductQuantity(50);
+        productRepository.create(product2);
+
+        Product product3 = new Product();
+        product2.setProductId("d8s98dwd-f92j-s92j-skd0-dkd01j29j3i");
+        product2.setProductName("Sampo Cap Udin");
+        product2.setProductQuantity(25);
+        productRepository.create(product2);
+
+        Product testedProduct = productRepository.findUnique(1);
+        assertEquals(testedProduct, product2);
+    }
 }
