@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import id.ac.ui.cs.advprog.eshop.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +12,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-    @Autowired
-    private ProductService service;
 
-    @GetMapping()
-    public String homepage() {
-        return "Homepage";
+    private final ProductServiceImpl service;
+
+    @Autowired
+    public ProductController(ProductServiceImpl service) {
+        this.service = service;
     }
 
     @GetMapping("/create")
