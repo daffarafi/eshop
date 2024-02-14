@@ -1,21 +1,18 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.ProductService;
 import id.ac.ui.cs.advprog.eshop.service.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @InjectMocks
     private ProductController controller;
@@ -43,7 +40,7 @@ public class ProductControllerTest {
         when(service.getProductById(0)).thenReturn(new Product());
 
         String page = controller.editProductPage(0, model);
-        assertEquals(page, "EditProduct");
+        assertEquals("EditProduct", page);
     }
 
     @Test
@@ -70,13 +67,13 @@ public class ProductControllerTest {
     @Test
     void createProductPostRedirectToListPage() throws Exception {
         String page = controller.createProductPost(new Product());
-        assertEquals(page, "redirect:list");
+        assertEquals("redirect:list", page);
     }
 
     @Test
     void editProductRedirectToListPage() throws Exception {
         String page = controller.editProduct(0, new Product(), model);
 
-        assertEquals(page, "redirect:/product/list");
+        assertEquals("redirect:/product/list", page);
     }
 }

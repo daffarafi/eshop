@@ -12,27 +12,27 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class ProductServiceImplTest {
+class ProductServiceImplTest {
     @Autowired
     private ProductServiceImpl service;
 
 
     @Test
-    public void testDeleteProduct() {
+    void testDeleteProduct() {
         service.create(new Product());
 
         List<Product> beforeDeleteProducts = service.findAll();
         System.out.println(beforeDeleteProducts.size());
 
-        assertEquals(beforeDeleteProducts.size(), 1);
+        assertEquals(1, beforeDeleteProducts.size());
 
         service.delete(0);
         List<Product> afterDeleteProducts = service.findAll();
-        assertEquals(afterDeleteProducts.size(), 0);
+        assertEquals(0, afterDeleteProducts.size());
     }
 
     @Test
-    public void testEditProduct() {
+    void testEditProduct() {
         Product oldProduct = new Product();
         oldProduct.setProductId("eb558e9f-1039-4600-8860-71af6af63bde");
         oldProduct.setProductName("Sampo Cap Bambang");
@@ -54,7 +54,7 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         service.create(new Product());
         service.create(new Product());
         service.create(new Product());
