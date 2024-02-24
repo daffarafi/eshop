@@ -9,35 +9,16 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class CarRepository {
+public class CarRepository extends AbstractRepository<Car> {
     static int id = 0;
 
-    private List<Car> carData = new ArrayList<>();
-    public Car create(Car car) {
-        if (car.getId() == null) {
-            UUID uuid = UUID.randomUUID();
-            car.setId(uuid.toString());
-        }
-
-        carData.add(car);
-        return car;
+    public CarRepository() {
+        this.data = new ArrayList<>();
     }
 
-    public Iterator<Car> findAll() {
-        return carData.iterator();
-    }
-
-    public Car find(String id) {
-        for (Car car: carData) {
-            if (car.getId().equals(id)) {
-                return car;
-            }
-        }
-        return null;
-    }
+    @Override
     public Car update(String id, Car updatedCar) {
-        for (int i = 0; i < carData.size();i++ ) {
-            Car car = carData.get(i);
+        for (Car car : data) {
             if (car.getId().equals(id)) {
                 car.setName(updatedCar.getName());
                 car.setColor(updatedCar.getColor());
@@ -47,6 +28,4 @@ public class CarRepository {
         }
         return null;
     }
-
-    public void delete(String id ) {carData.removeIf(car -> car.getId().equals(id));}
 }
