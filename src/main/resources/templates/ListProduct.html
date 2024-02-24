@@ -20,10 +20,10 @@
         </thead>
         <tbody>
         <tr th:each="product, iter: ${products}">
-            <td th:text="${product.productName}"></td>
-            <td th:text="${product.productQuantity}"></td>
-            <td><a th:href="@{/product/edit/{id}(id=${iter.index})}"><button  type="button" class="btn btn-primary">Edit</button></a>
-                <a th:href="@{/product/delete/{id}(id=${iter.index})}"><button type="button" class="btn btn-danger">Delete</button></a>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td><a th:href="@{/product/edit/{id}(id=${product.id})}"><button  type="button" class="btn btn-primary">Edit</button></a>
+                <a th:href="@{/product/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-danger">Delete</button></a>
             </td>
         </tr>
         </tbody>

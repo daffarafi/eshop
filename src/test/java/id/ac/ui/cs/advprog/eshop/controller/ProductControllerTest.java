@@ -46,7 +46,7 @@ class ProductControllerTest {
     @Test
     void createProductPage() throws Exception {
         String page = controller.createProductPage(model);
-        assertEquals("createProduct", page);
+        assertEquals("CreateProduct", page);
     }
 
     @Test

@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService<Product>{
     @Autowired
     private ProductRepository productRepository;
 
@@ -29,16 +29,16 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(String id) {
         productRepository.delete(id);
     }
     @Override
-    public Product editProduct(int id, Product product) {
-        return productRepository.editById(id, product);
+    public Product update(String id, Product product) {
+        return productRepository.update(id, product);
     }
 
     @Override
-    public Product getProductById(int id) {
-        return productRepository.findUnique(id);
+    public Product find(String id) {
+        return productRepository.find(id);
     }
 }

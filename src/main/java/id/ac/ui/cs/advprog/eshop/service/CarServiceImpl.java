@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements  CarService{
+public class CarServiceImpl implements ProductService<Car>{
     @Autowired
     private CarRepository carRepository;
 
@@ -28,18 +28,18 @@ public class CarServiceImpl implements  CarService{
     }
 
     @Override
-    public Car findById(String carId) {
-        Car car = carRepository.findById(carId);
+    public Car find(String carId) {
+        Car car = carRepository.find(carId);
         return car;
     }
 
     @Override
-    public void update(String carId, Car car) {
-        carRepository.update(carId, car);
+    public Car update(String carId, Car car) {
+        return carRepository.update(carId, car);
     }
 
     @Override
-    public void deleteCarById(String carId) {
+    public void delete(String carId) {
         carRepository.delete(carId);
     }
 }

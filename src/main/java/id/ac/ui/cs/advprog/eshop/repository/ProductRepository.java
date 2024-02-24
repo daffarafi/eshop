@@ -1,37 +1,31 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public class ProductRepository {
-    private List<Product> productData = new ArrayList<>();
+public class ProductRepository extends AbstractRepository<Product> {
+    static int id = 0;
 
-    public Product create (Product product) {
-        productData.add(product);
-        return product;
+    public ProductRepository() {
+        this.data = new ArrayList<Product>();
     }
 
-    public Iterator<Product> findAll() {
-        return productData.iterator();
-    }
-
-    public void delete(int id) {
-        productData.remove(id);
-    }
-
-    public Product editById(int id, Product newProduct) {
-        Product product = productData.get(id);
-        product.setProductName(newProduct.getProductName());
-        product.setProductQuantity(newProduct.getProductQuantity());
-        return product;
-    }
-
-    public Product findUnique(int id) {
-        return productData.get(id);
+    @Override
+    public Product update(String id, Product updatedProduct) {
+        for (Product product : data) {
+            if (product.getId().equals(id)) {
+                product.setName(updatedProduct.getName());
+                product.setQuantity(updatedProduct.getQuantity());
+                return product;
+            }
+        }
+        return null;
     }
 }
