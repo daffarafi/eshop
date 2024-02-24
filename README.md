@@ -1,4 +1,43 @@
 <details>
+<summary>Reflection Module 3</summary>
+
+1) Explain what principles you apply to your project!
+
+    Saya sudah menerapkan semua prinsip SOLID pada kode saya, berikut penjelasannya:
+   - SRP
+    Untuk menerapkan prinsip SRP saya memindahkan CarController yang ada pada ProductController.java ke file terpisah yaitu CarController.java. Menurut saya, menempatkan CarController pada ProductController.java tidak sesuai karena CarController tidak berhubungan dengan ProductController, selain itu CarController memiliki tugas yang terpisah dengan ProductController, yaitu agar web dapat mengakses endpoint /car.
+   - OCP
+    Untuk menerapkan prinsip OSP saya membuat sebuah abstract class untuk repository, yaitu AbstractRepository. Saya melihat banyak kemiripan antara CarRepository dan ProductRepository, salah satu perbedaannya adalah method update. Oleh karena itu, saya membuat abstract class yang sama, hanya saja method update saya buat abstract agar masing-masing dari ProductRepository dan CarRepository dapat mengextend AbstractRepository dan mengimplementasikan method updatenya masing-masing.
+   - LSP
+    Untuk menerapkan prinsip LSP saya merubah model Car agar mengextend model Product. Saya melihat kemiripan properti antara Car dan Product, yang membedakan adalah Car memiliki properti Color. oleh karena itu saya buat agar Car mengextend Product dan menambahkan properti baru yaitu Color. Hal ini mirip dengan kasus Square yang mengextend Rectangle. 
+   - ISP
+    Menurut saya, kode yang telah diberikan tidak melanggar prinsip ISP. Disini saya menganggap Product adalah Base Model dari model-model lainnya, salah satunya Car. Ketika ada model baru, maka model baru tersebut akan mengextend model Product, mirip seperti yang dilakukan oleh model Car. Saya mungkin bisa memecah Repository yang ada menjadi method CRUD masing-masing seperti CreateRepository, RetrieveRepository, DeleteRepository, dan UpdateRepository. Namun menurut saya hal itu tidak perlu, karena saya menganggap method-method CRUD menjadi method minimal untuk sebuah Repository.
+   - DIP
+    Untuk menerapkan DIP saya membuat ProductService menjadi sebuah interface yang memiliki Generic Type. Saya melihat kemiripan antara CarService dan ProductService, sehingga saya membuat kedua implementasi tersebut mengimplementasikan interface yang sama, yaitu ProductService, yang membedakan adalah Typenya. Saya tidak membuat abstract class seperti Repository karena menurut saya service sering kali memiliki logic yang berbeda, sehingga saya hanya membuat Interfacenya saja.
+
+2) Explain the advantages of applying SOLID principles to your project with examples.
+
+    Terdapat beberapa keuntungan pada proyek saya ketika menerapkan prinsip SOLID, diantaranya ialah:
+
+    - Kualitas Kode yang Lebih Baik: SOLID membantu dalam pembuatan kode yang lebih bersih, terstruktur, dan mudah dimengerti. Hal ini meminimalkan kesalahan, memudahkan debugging, dan meningkatkan keandalan perangkat lunak. Contoh yang ada pada proyek saya adalah pemisahan CarController dari ProductController.java. Hal ini memudahkan karena isi dari ProductController.java tidak terlalu panjang sehingga developer tidak kesulitan dalam mencari kode.
+    
+    - Pengurangan Duplikasi Kode: Prinsip SOLID mendorong penggunaan pola-pola desain yang mengurangi duplikasi kode. Hal ini menghasilkan kode yang lebih bersih dan efisien. Contohnya adalah model dan repository pada proyek saya. Car model mengextend Product model, sehingga tidak perlu adanya pemisahan nama variable yang redundant seperti carId dan productId, cukup dengan id namun id tersebut ada pada masing-masing Car dan Product. CarRepository dan ProductRepository juga mengextend AbstractRepository dan hanya membuat method update yang berbeda.
+    - Skalabilitas: SOLID memungkinkan struktur kode yang memfasilitasi pertumbuhan dan perubahan sistem seiring waktu. Dengan menerapkan prinsip-prinsip ini, Saya dapat menghindari pembuatan kode yang kaku dan sulit diperluas, sehingga sistem lebih mudah disesuaikan dengan kebutuhan baru. Contohnya adalah AbstractRepository dan ProductService, saya membuat AbstractRepository agar ketika ada Repository baru, Repository tersebut cukup mengextend AbstractRepository yang ada. Sedangkan jika ada Service baru, maka Service tersebut hanya perlu mengimplement ProductService, jika dibutuhkan method baru diluar ProductService, maka hanya perlu membuat interface baru yang mengimplement ProductService.
+    
+    Secara keseluruhan, menerapkan prinsip SOLID membantu dalam menciptakan basis kode yang kokoh, mudah dikelola, dan dapat berkembang dengan baik seiring waktu.
+
+3) Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+    Tidak menerapkan prinsip SOLID dalam sebuah proyek dapat mengakibatkan beberapa kerugian yang signifikan:
+    
+    - Duplikasi Kode dan Ketidak Konsistenan: Tanpa SOLID, mungkin sulit untuk mengidentifikasi pola umum dan memperkenalkan abstraksi yang tepat. Hal ini sering mengakibatkan duplikasi kode di berbagai bagian proyek, yang tidak hanya membuang waktu tetapi juga dapat menyebabkan ketidak konsistenan antara bagian-bagian yang berbeda. Dapat dilihat pada branch before-solid, terdapat banyak sekali duplikasi kode pada Repository.
+    
+    - Kesulitan dalam Pengujian: Kode yang tidak menerapkan SOLID tentu akan membutuhkan kode testing yang lebih banyak, hal ini dikarenakan adanya duplikasi kode, dan banyak kode yang bergantung satu sama lain.
+    
+    - Kesulitan dalam Pemeliharaan dan Perbaikan Bug: Tanpa SOLID, ketika sebuah bug ditemukan atau perubahan diperlukan, pengembang mungkin perlu melakukan perubahan yang signifikan pada banyak bagian kode. Hal ini meningkatkan risiko memperkenalkan bug baru dan membuat pemeliharaan menjadi lebih rumit dan memakan waktu.
+</details>
+
+<details>
 <summary>Reflection Module 2</summary>
 
 1. Dalam pengerjaan module 2 kali ini, terdapat beberapa perbaikan dari kode saya, pertama saat mengimplementasikan JaCoCo dan yang kedua adalah saat mengimplementasikan Sonar Cloud. Saat mengimplementasikan JaCoCo saya mencoba memberikan unit test pada seluruh kode saya hingga coverage mencapai angka 100%. Hal ini mulai dari controller, service, hingga repository. Sedangkan pada saat mengimplementasikan Sonar Cloud, saya mencoba untuk menerapkan saran-saran yang diberikan oleh Sonar Cloud. Hal ini mulai dari menghapus penggunaan public yang tidak disarankan, memperbaiki penggunaan Autowired, dan lain sebagainya.
