@@ -1,4 +1,33 @@
 <details>
+    <summary>Reflection Module 4</summary>
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+    Meninjau alur TDD menggunakan pertanyaan reflektif yang diusulkan oleh Percival, penting untuk mengevaluasi apakah proses tersebut efektif dalam mencapai tujuannya. Mengingat tujuan pengujian, jika alur TDD tidak cukup berguna, saya perlu mengidentifikasi area untuk diperbaiki.
+    
+    Menurut saya, alur TDD yang telah saya lakukan selama mengerjakan module 4 ini cukup berguna. Berdasarkan usulan yang diberikan Percival, saya mengevaluasi proses TDD yang saya lakukan seperti berikut.
+    
+    Pertama, saya akan memeriksa apakah alur TDD cukup menangani kebutuhan dan fungsionalitas dari kode yang sedang di test?. Apakah test mencakup semua aspek yang diperlukan dari kode? Apakah terdapat celah dalam cakupan pengujian? Sejauh ini, saya menilai testing yang telah ditulis sudah memenuhi pertanyaan-pertanyaan tersebut
+    
+    Kedua, saya akan menilai efisiensi dari tahapan testing dengan metode TDD. Apakah proses ini menghasilkan siklus development yang lebih cepat dan kode yang lebih baik? Apakah ada bottleneck atau menghambat proses development? Menurut saya kode testing yang diberikan membantu menghasilkan kode lebih baik, walau dalam pembuatan testing akan sedikit menghambat, namun sepadang dengan fungsi testing itu sendiri, yaitu menemukan bug lebih awal, sehingga akan membantu dalam bug fixing nantinya.
+    
+    Ketiga, saya akan memperhatikan test yang telah dibuat. Apakah tes mudah dipahami dan direfactor jika dibutuhkan? Sejauh ini, test yang dibuat masih tidak terlalu kompleks, sehingga masih mudah dipahami dan tidak perlu di refactor.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+    Fast: Apakah tes berjalan dengan cepat? Sejauh ini test masih berjalan dengan cepat dan tidak menghambat proses development.
+    
+    Isolated/Independent: Apakah tes independen satu sama lain? Ketergantungan satu sama lain dapat membuat kode kurang baik dan menyebabkan bug yang sulit di fix. Sejauh ini kode masih terisolasi dengan baik.
+    
+    Repeatable: Apakah tes dapat dijalankan secara konsisten di berbagai lingkungan? Ketidak konsistenan biasanya terjadi karena program bergantung pada faktor eksternal seperti package yang digunakan. Sejauh ini package masih tertulis dengan baik dan tidak bergantung dengan faktor eksternal. Seharusnya test akan menghasilkan hasil yang sama terlepas dari lingkungan di mana test tersebut dieksekusi.
+    
+    Self-validating: Apakah tes secara otomatis menentukan keberhasilan atau kegagalan mereka? Ya, semua test yang terpikiran sudah tertulis dalam test.
+    
+    Timely: Apakah tes ditulis tepat waktu, idealnya sebelum kode? Berdasarkan proses TDD, semua test yang ditulis telah ditulis sebelum kode program ditulis
+
+</details>
+
+<details>
 <summary>Reflection Module 3</summary>
 
 1) Explain what principles you apply to your project!
