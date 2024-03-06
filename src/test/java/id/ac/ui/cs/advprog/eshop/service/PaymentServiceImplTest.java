@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PaymentServiceImplTest {
     @InjectMocks
-    PaymentServiceImplTest paymentService;
+    PaymentService paymentService;
     @Mock
     PaymentRepository paymentRepository;
 
@@ -56,7 +56,7 @@ class PaymentServiceImplTest {
 
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234678ABCD");
-        Payment newPayment = paymentService.addPayment(order, PaymentMethod.VOUCHER, paymentData);
+        Payment newPayment = paymentService.addPayment(order, PaymentMethod.VOUCHER.getValue(), paymentData);
         verify(paymentRepository, times(1)).save(payment);
         Payment result = paymentService.getPayment(newPayment.getId());
         assertEquals(result.getId(), newPayment.getId());
@@ -81,13 +81,13 @@ class PaymentServiceImplTest {
         Payment payment = payments.get(1);
         doReturn(payment).when(paymentRepository).findById(payment.getId());
 
-        Payment result = paymentService.findById(payment.getId());
+        Payment result = paymentService.getPayment(payment.getId());
         assertEquals(payment.getId(), result.getId());
     }
 
     @Test
     void testFindByIdIfIdNotFound() {
-        doReturn(null).when(paymentRepository).findById("zczc");
-        assertNull(paymentService.findById("zczc"));
+        doReturn(null).when(paymentRepository).getPayment("zczc");
+        assertNull(paymentService.getPayment("zczc"));
     }
 }
