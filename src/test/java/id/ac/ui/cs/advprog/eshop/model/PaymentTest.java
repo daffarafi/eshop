@@ -15,7 +15,10 @@ public class PaymentTest {
 
     @BeforeEach
     void setup() {
-        order = new Order("1238d7d2d-20s9-d8ef-19d8s7d9eh12", new ArrayList<>(), 128560000L, "Safira Sudrajat");
+        Product product1 = new Product();
+        List<Product> products = new ArrayList<>();
+        products.add(product1);
+        order = new Order("1238d7d2d-20s9-d8ef-19d8s7d9eh12", products, 128560000L, "Safira Sudrajat");
     }
 
     @Test
