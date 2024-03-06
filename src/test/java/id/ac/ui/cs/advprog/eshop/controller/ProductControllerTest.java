@@ -37,9 +37,9 @@ class ProductControllerTest {
 
     @Test
     void getEditProductPage() throws Exception {
-        when(service.getProductById(0)).thenReturn(new Product());
+        when(service.find("0")).thenReturn(new Product());
 
-        String page = controller.editProductPage(0, model);
+        String page = controller.editProductPage("0", model);
         assertEquals("EditProduct", page);
     }
 
@@ -51,16 +51,16 @@ class ProductControllerTest {
 
     @Test
     void editProductPage() throws Exception {
-        when(service.getProductById(0)).thenReturn(new Product());
+        when(service.find("0")).thenReturn(new Product());
 
-        String page = controller.editProductPage(0, model);
+        String page = controller.editProductPage("0", model);
 
         assertEquals("EditProduct", page);
     }
 
     @Test
     void deleteProductRedirectToListPage() throws Exception {
-        String page = controller.deleteProduct(0);
+        String page = controller.deleteProduct("0");
         assertEquals("redirect:/product/list", page);
     }
 
@@ -72,7 +72,7 @@ class ProductControllerTest {
 
     @Test
     void editProductRedirectToListPage() throws Exception {
-        String page = controller.editProduct(0, new Product(), model);
+        String page = controller.editProduct("0", new Product(), model);
 
         assertEquals("redirect:/product/list", page);
     }

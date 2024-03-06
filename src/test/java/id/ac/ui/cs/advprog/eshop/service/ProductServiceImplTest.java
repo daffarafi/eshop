@@ -19,14 +19,15 @@ class ProductServiceImplTest {
 
     @Test
     void testDeleteProduct() {
-        service.create(new Product());
+        Product newProduct = new Product();
+        service.create(newProduct);
 
         List<Product> beforeDeleteProducts = service.findAll();
         System.out.println(beforeDeleteProducts.size());
 
         assertEquals(1, beforeDeleteProducts.size());
 
-        service.delete(0);
+        service.delete(newProduct.getId());
         List<Product> afterDeleteProducts = service.findAll();
         assertEquals(0, afterDeleteProducts.size());
     }
@@ -34,36 +35,39 @@ class ProductServiceImplTest {
     @Test
     void testEditProduct() {
         Product oldProduct = new Product();
-        oldProduct.setProductId("eb558e9f-1039-4600-8860-71af6af63bde");
-        oldProduct.setProductName("Sampo Cap Bambang");
-        oldProduct.setProductQuantity(100);
+        oldProduct.setId("eb558e9f-1039-4600-8860-71af6af63bde");
+        oldProduct.setName("Sampo Cap Bambang");
+        oldProduct.setQuantity(100);
         service.create(oldProduct);
 
         Product newProduct = new Product();
-        newProduct.setProductName("Sampo Cap Bambang Baru");
-        newProduct.setProductQuantity(50);
+        newProduct.setName("Sampo Cap Bambang Baru");
+        newProduct.setQuantity(50);
 
-        service.editProduct(0, newProduct);
+        service.update("eb558e9f-1039-4600-8860-71af6af63bde", newProduct);
 
-        Product editedProduct = service.getProductById(0);
+        Product editedProduct = service.find("eb558e9f-1039-4600-8860-71af6af63bde");
 
-        assertEquals(editedProduct.getProductQuantity(), newProduct.getProductQuantity());
-        assertEquals(editedProduct.getProductName(), newProduct.getProductName());
+        assertEquals(editedProduct.getQuantity(), newProduct.getQuantity());
+        assertEquals(editedProduct.getName(), newProduct.getName());
 
-        service.delete(0);
+        service.delete("eb558e9f-1039-4600-8860-71af6af63bde");
     }
 
     @Test
     void testFindAll() {
-        service.create(new Product());
-        service.create(new Product());
-        service.create(new Product());
+        Product newProduct1 = new Product();
+        Product newProduct2 = new Product();
+        Product newProduct3 = new Product();
+        service.create(newProduct1);
+        service.create(newProduct2);
+        service.create(newProduct3);
 
         List<Product> products = service.findAll();
         assertEquals(3, products.size());
 
-        service.delete(0);
-        service.delete(0);
-        service.delete(0);
+        service.delete(newProduct1.getId());
+        service.delete(newProduct2.getId());
+        service.delete(newProduct3.getId());
     }
 }

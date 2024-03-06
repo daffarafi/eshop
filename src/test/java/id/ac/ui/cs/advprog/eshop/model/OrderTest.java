@@ -1,7 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class OrderTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Order order = new  Order("12341234-1234-1234-1234-123412341234",
                     this.products, 1708560000L, "Safira Sudrajat", "MEOW");
-        })
+        });
     }
     @Test
     void testSetStatusToCancelled() {
