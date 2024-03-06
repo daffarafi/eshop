@@ -38,8 +38,9 @@ public class PaymentRepositoryTest {
         payments.add(payment1);
 
         Map<String, String> paymentData2 = new HashMap<>();
-        paymentData2.put("voucherCode", "ESHOP1234567ADFER");
-        Payment payment2 = new Payment("dsad1232-dsae-123d-wed123d1w3d", PaymentMethod.VOUCHER.getValue(), order, paymentData2);
+        paymentData2.put("address", "Depok Street");
+        paymentData2.put("deliveryFee", "10000");
+        Payment payment2 = new Payment("dsad1232-dsae-123d-wed123d1w3d", PaymentMethod.COD.getValue(), order, paymentData2);
         payments.add(payment2);
     }
 
